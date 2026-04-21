@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toto agent — tu mascota de escritorio</title>
+  <meta name="description" content="Un bulldog cachorro que vive en tu escritorio, duerme y se despierta cuando llega un mail.">
+  <link rel="icon" href="/icon.ico">
+  <meta property="og:title" content="Toto agent">
+  <meta property="og:description" content="Un bulldog cachorro que vive en tu escritorio.">
+  <meta property="og:image" content="/hero.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <div class="wordmark">
+        <img src="/hero.png" alt="" width="56" height="56">
+        <span>Toto <em>agent</em></span>
+      </div>
+      <nav>
+        <a href="#install">Instalar</a>
+        <a href="#how">Cómo funciona</a>
+        <a href="https://github.com/gabrielsakc/toto-agent" id="gh" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="tag">beta · Windows 11</span>
+        <h1>Un cachorro bulldog<br>que vive en tu escritorio.</h1>
+        <p>Duerme tranquilo en una esquina. Cuando algo pasa — por ejemplo, llega un mail — se despierta, ladra, sale corriendo por la pantalla y vuelve a su siesta.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/gabrielsakc/toto-agent/releases/latest/download/TotoAgent.exe">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar para Windows
+          </a>
+          <span class="meta">115&nbsp;MB · .exe firmado no · v0.1 beta</span>
+        </div>
+      </div>
+      <div class="hero-video">
+        <video autoplay muted loop playsinline>
+          <source src="/preview.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <section class="features">
+      <article>
+        <h3>Siempre visible</h3>
+        <p>Flota encima de cualquier app, sin molestar. Fondo 100 % transparente.</p>
+      </article>
+      <article>
+        <h3>Animación real</h3>
+        <p>Video a 24 fps generado con Veo 3 → 380+ frames para un galope cinemático.</p>
+      </article>
+      <article>
+        <h3>Reacciona a tu Gmail</h3>
+        <p>IMAP en vivo con IDLE. Cada mail nuevo despierta al perro.</p>
+      </article>
+    </section>
+
+    <section id="install" class="install">
+      <h2>Instalación en 30 segundos</h2>
+      <ol>
+        <li><strong>Descargá</strong> el .exe (botón de arriba).</li>
+        <li><strong>Hacé doble click</strong>. Windows SmartScreen puede mostrar un aviso porque el .exe no está firmado — clic en <em>“Más información” → “Ejecutar de todos modos”</em>.</li>
+        <li>El perro aparece abajo a la derecha, durmiendo. En la bandeja del sistema (esquina inferior derecha, junto al reloj) aparece su ícono.</li>
+        <li>Click derecho sobre el perro → <em>Test: bark + run</em> para ver la animación completa.</li>
+      </ol>
+
+      <h3>Conectar tu Gmail (opcional)</h3>
+      <p>Click derecho sobre el perro → <em>Configurar Gmail...</em>. Necesitás una <strong>App Password</strong> de Google (requiere verificación en dos pasos). Generala en <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a> y pegala en el diálogo.</p>
+    </section>
+
+    <section id="how" class="how">
+      <h2>Cómo funciona</h2>
+      <p>Frames extraídos de 5 clips de <a href="https://deepmind.google/technologies/veo/" target="_blank" rel="noopener">Veo 3</a> (Flow), pasados por un pipeline de remoción de fondo por componentes conectados. Reproducción con PyQt6 en una ventana translúcida sin marco. IMAP-IDLE para detectar mail en tiempo real.</p>
+      <p class="stack"><code>Python 3.10 · PyQt6 · OpenCV · NumPy · SciPy · imapclient · Veo 3</code></p>
+    </section>
+
+    <footer>
+      <span>Toto agent · 2026</span>
+      <span>Hecho en Paraguay <span aria-hidden="true">·</span> <a href="mailto:gabrielsakc@gmail.com">Contacto</a></span>
+    </footer>
+  </main>
+</body>
+</html>
