@@ -78,6 +78,26 @@ nav a {
 }
 nav a:hover { color: var(--fg); }
 
+.lang-toggle {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.lang-toggle:hover {
+  color: var(--fg);
+  border-color: var(--accent);
+  background: rgba(212, 160, 84, 0.08);
+}
+.lang-toggle:active { transform: translateY(1px); }
+
 /* ---------- hero ---------- */
 .hero {
   display: grid;
