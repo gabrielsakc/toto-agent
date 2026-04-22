@@ -1,0 +1,4 @@
+PyQt6>=6.5
+Pillow>=10
+numpy>=1.24
+imapclient>=3.0

@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Vercel
+.vercel
+
+# Node (if ever used for tooling)
+node_modules/
+
+# Python build artefacts – live in app/
+app/build/
+app/dist/
+app/__pycache__/
+app/*.egg-info/
+app/assets/
+app/assets_processed/
+*.pyc
+
+# Large binary – distributed via GitHub Releases, never committed
+*.exe

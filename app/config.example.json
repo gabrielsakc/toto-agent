@@ -1,0 +1,13 @@
+{
+  "pet_height_px": 180,
+  "anchor": "bottom-right",
+  "margin_px": 40,
+  "gmail": {
+    "enabled": false,
+    "username": "you@gmail.com",
+    "app_password": "abcd efgh ijkl mnop",
+    "imap_host": "imap.gmail.com",
+    "imap_port": 993,
+    "poll_seconds": 30
+  }
+}

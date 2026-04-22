@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/TotoAgent.exe",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" },
+        { "key": "Content-Disposition", "value": "attachment; filename=\"TotoAgent.exe\"" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+}
