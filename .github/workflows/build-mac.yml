@@ -1,0 +1,80 @@
+name: Build macOS .app
+
+# Triggers:
+#   - Manual run from the Actions tab (workflow_dispatch)
+#   - On any new GitHub Release published — uploads the .zip as a release asset
+#   - Pushes to main that touch app/ — sanity-check the build but don't publish
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/build-mac.yml'
+
+permissions:
+  contents: write    # needed to upload assets to releases
+
+jobs:
+  build:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: app
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # The processed sprite frames live under app/assets_processed/ but that
+      # folder is gitignored, so a fresh clone has nothing to bundle. We bail
+      # out with a clear message instead of producing a broken empty .app.
+      - name: Verify bundled assets are present
+        run: |
+          if [ ! -d "assets_processed" ] || [ -z "$(ls -A assets_processed 2>/dev/null)" ]; then
+            echo "::error::app/assets_processed/ is empty or missing."
+            echo "The build needs the processed sprite frames bundled into the .app."
+            echo "Either commit assets_processed/ to the repo, or add a step to"
+            echo "this workflow that downloads them from a release/storage bucket"
+            echo "before running PyInstaller."
+            exit 1
+          fi
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build .app
+        run: pyinstaller TotoAgent_mac.spec --noconfirm
+
+      - name: Zip the .app bundle
+        run: |
+          cd dist
+          # `zip -y` preserves symlinks (Qt frameworks rely on them).
+          zip -r -y TotoAgent-mac.zip TotoAgent.app
+
+      - name: Upload artifact (every run)
+        uses: actions/upload-artifact@v4
+        with:
+          name: TotoAgent-mac
+          path: app/dist/TotoAgent-mac.zip
+          if-no-files-found: error
+
+      # When triggered by a published release, attach the .zip as a release asset.
+      # `gh release upload --clobber` lets re-runs overwrite a previous attempt.
+      - name: Attach .zip to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" \
+            dist/TotoAgent-mac.zip --clobber
