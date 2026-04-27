@@ -13,7 +13,8 @@ app/dist/
 app/__pycache__/
 app/*.egg-info/
 app/assets/
-app/assets_processed/
+# app/assets_processed/ is now committed so CI builds (Mac .app, future Linux)
+# can produce a working bundle without needing the developer's local machine.
 *.pyc
 
 # Large binary – distributed via GitHub Releases, never committed
